@@ -26,3 +26,5 @@ someinternalhost_IP = 10.128.0.17
 testapp_IP = 178.154.204.116
 
 testapp_port = 9292
+
+Для сборки образа в Packer создали в папке packer ubuntu16.json, он использует скрипты из папки packer/scripts, также есть файл variables.json.example, там параметризованные переменные, но значения неверные, нужно изменить
