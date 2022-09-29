@@ -1,12 +1,13 @@
 {
     "variables": {
       "folder_id": "{{env `folder_id`}}",
-      "source_image_family": "{{env `source_image_family`}}"
+      "source_image_family": "{{env `source_image_family`}}",
+      "service_account_key_file": "{{env `service_account_key_file`}}"
     },
     "builders": [
         {
             "type": "yandex",
-            "service_account_key_file": "../../AleksandrKalitin_infra_key.json",
+            "service_account_key_file": "{{user `service_account_key_file`}}",
             "folder_id": "{{user `folder_id`}}",
             "source_image_family": "{{user `source_image_family`}}",
             "image_name": "reddit-base-{{timestamp}}",
