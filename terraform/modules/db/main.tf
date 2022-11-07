@@ -1,5 +1,17 @@
-resource "yandex_compute_instance" "app" {
-  name        = "reddit-app"
+terraform {
+  required_providers {
+    yandex = {
+      source = "yandex-cloud/yandex"
+    }
+  }
+  required_version = ">= 0.35"
+}
+
+resource "yandex_compute_instance" "db" {
+  name = "reddit-db"
+  labels = {
+    tags = "reddit-db"
+  }
   platform_id = "standard-v2"
   resources {
     cores  = 2
@@ -8,7 +20,7 @@ resource "yandex_compute_instance" "app" {
   boot_disk {
     initialize_params {
       # Указать id образа созданного в предыдущем домашнем задании
-      image_id = var.image_id
+      image_id = var.db_disk_image
     }
   }
   network_interface {
@@ -21,7 +33,7 @@ resource "yandex_compute_instance" "app" {
   }
   connection {
     type  = "ssh"
-    host  = yandex_compute_instance.app.network_interface.0.nat_ip_address
+    host  = yandex_compute_instance.db.network_interface.0.nat_ip_address
     user  = "ubuntu"
     agent = false
     # путь до приватного ключа
