@@ -30,3 +30,7 @@ variable "db_disk_image" {
   description = "Disk image for reddit db"
   default     = "reddit-db-base"
 }
+variable "service_account_key_file" {
+  # Описание переменной
+  description = "Path to the public key used for ssh access"
+}
